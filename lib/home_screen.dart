@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:boltecommerceapp/Model/category.dart';
 import 'package:flutter/material.dart';
 
 import 'Utility/config.dart';
@@ -9,6 +12,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int selected = 0;
+  List _list = categories;
+
+  List _category = [
+    categories[0].name,
+    categories[1].name,
+    categories[2].name,
+  ];
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -101,6 +113,94 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         'Categories',
+                        style: TextStyle(
+                            letterSpacing: 0.2,
+                            color: Colors.black,
+                            fontSize: SizeConfig.safeBlockHorizontal * 5),
+                      ),
+                      Text(
+                        'See all',
+                        style: TextStyle(
+                            letterSpacing: 0.2,
+                            color: Colors.black54,
+                            fontSize: SizeConfig.safeBlockHorizontal * 3.5),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical,
+                ),
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical * 10.5,
+                  width: SizeConfig.screenWidth,
+                  child: ListView.builder(
+                    itemCount: _category.length,
+                    controller: null,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: EdgeInsets.only(
+                            right: SizeConfig.safeBlockHorizontal * 1),
+                        width: SizeConfig.safeBlockHorizontal * 33,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Card(
+                            elevation: 2,
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(3.5),
+                                  child: Image.asset(
+                                    '${_list[index].imageUrl}',
+                                    fit: BoxFit.fitHeight,
+                                    width: SizeConfig.screenWidth,
+                                    height: SizeConfig.screenHeight,
+                                    semanticLabel: 'Category',
+                                  ),
+                                ),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(3.5),
+                                  child: Container(
+                                    color: Color.fromRGBO(
+                                        Random().nextInt(255),
+                                        Random().nextInt(255),
+                                        Random().nextInt(255),
+                                        0.7),
+                                  ),
+                                ),
+                                Center(
+                                  child: Text(
+                                    '${_list[index].name}',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+//                Featured
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical * 4.6,
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                      left: SizeConfig.safeBlockHorizontal * 2,
+                      right: SizeConfig.safeBlockHorizontal * 6.5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Featured',
                         style: TextStyle(
                             letterSpacing: 0.2,
                             color: Colors.black,
