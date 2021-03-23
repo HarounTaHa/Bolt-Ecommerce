@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:boltecommerceapp/Model/category.dart';
 import 'package:boltecommerceapp/Model/product.dart';
+import 'package:boltecommerceapp/see_all_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'Utility/config.dart';
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int selected = 0;
   List _list = categories;
   List _listProductFeatured = productFeatured;
-  List _listProductBestSell =   productBestSell;
+  List _listProductBestSell = productBestSell;
   List _category = [
     categories[0].name,
     categories[1].name,
@@ -63,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: SizeConfig.safeBlockVertical * 4),
                   //Search Bar
                   Padding(
-                    padding: const EdgeInsets.only(right: 20),
+                    padding: EdgeInsets.only(right: 20),
                     child: SizedBox(
                       height: SizeConfig.safeBlockHorizontal * 13.5,
                       width: SizeConfig.screenWidth,
@@ -214,12 +215,23 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.black,
                               fontSize: SizeConfig.safeBlockHorizontal * 5),
                         ),
-                        Text(
-                          'See all',
-                          style: TextStyle(
-                              letterSpacing: 0.2,
-                              color: Colors.black54,
-                              fontSize: SizeConfig.safeBlockHorizontal * 3.5),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SeeAllScreen('Featured'),
+                                    settings: RouteSettings(
+                                        arguments: _listProductFeatured)));
+                          },
+                          child: Text(
+                            'See all',
+                            style: TextStyle(
+                                letterSpacing: 0.2,
+                                color: Colors.black54,
+                                fontSize: SizeConfig.safeBlockHorizontal * 3.5),
+                          ),
                         ),
                       ],
                     ),
@@ -235,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: SizeConfig.safeBlockVertical * 35,
                       width: SizeConfig.screenWidth,
                       child: ListView.builder(
-                          itemCount: _listProductFeatured.length,
+                          itemCount: _listProductFeatured.length - 3,
                           controller: null,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
@@ -290,6 +302,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           }),
                     ),
                   ),
+
+                  //                Best Sell
+
                   Container(
                     margin: EdgeInsets.only(
                         left: SizeConfig.safeBlockHorizontal * 2,
@@ -304,12 +319,23 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.black,
                               fontSize: SizeConfig.safeBlockHorizontal * 5),
                         ),
-                        Text(
-                          'See all',
-                          style: TextStyle(
-                              letterSpacing: 0.2,
-                              color: Colors.black54,
-                              fontSize: SizeConfig.safeBlockHorizontal * 3.5),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SeeAllScreen('Best Sell'),
+                                    settings: RouteSettings(
+                                        arguments: _listProductBestSell)));
+                          },
+                          child: Text(
+                            'See all',
+                            style: TextStyle(
+                                letterSpacing: 0.2,
+                                color: Colors.black54,
+                                fontSize: SizeConfig.safeBlockHorizontal * 3.5),
+                          ),
                         ),
                       ],
                     ),
@@ -368,7 +394,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           Align(
                                               alignment: Alignment.centerLeft,
-                                              child: Text('${_listProductBestSell[index].name}')),
+                                              child: Text(
+                                                  '${_listProductBestSell[index].name}')),
                                         ],
                                       ),
                                     ),

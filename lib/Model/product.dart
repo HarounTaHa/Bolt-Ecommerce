@@ -14,6 +14,12 @@ List productFeatured = [
       'A wonderful serenity has taken possession of my entire soul.'),
   Product('assets/woman_2.png', 'Woman T-Shirt', '\$34.00',
       'A wonderful serenity has taken possession of my entire soul.'),
+  Product('assets/woman_4.png', 'Blezer', '\$34.00',
+      'A wonderful serenity has taken possession of my entire soul.'),
+  Product('assets/man_3.png', 'Shirt', '\$34.00',
+      'A wonderful serenity has taken possession of my entire soul.'),
+  Product('assets/woman_5.png', 'T-Shirt', '\$34.00',
+      'A wonderful serenity has taken possession of my entire soul.'),
 ];
 List productBestSell = [
   Product('assets/woman_3.png', 'Woman T-Shirt', '\$24.00',
