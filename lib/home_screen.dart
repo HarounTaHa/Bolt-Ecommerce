@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:boltecommerceapp/Model/category.dart';
 import 'package:boltecommerceapp/Model/product.dart';
+import 'package:boltecommerceapp/product_details.dart';
 import 'package:boltecommerceapp/see_all_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -122,12 +123,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.black,
                               fontSize: SizeConfig.safeBlockHorizontal * 5),
                         ),
-                        Text(
-                          'See all',
-                          style: TextStyle(
-                              letterSpacing: 0.2,
-                              color: Colors.black54,
-                              fontSize: SizeConfig.safeBlockHorizontal * 3.5),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Text(
+                            'See all',
+                            style: TextStyle(
+                                letterSpacing: 0.2,
+                                color: Colors.black54,
+                                fontSize: SizeConfig.safeBlockHorizontal * 3.5),
+                          ),
                         ),
                       ],
                     ),
@@ -256,7 +260,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   right: SizeConfig.safeBlockHorizontal * 3.5),
                               width: SizeConfig.safeBlockHorizontal * 35,
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ProductDetails(),
+                                          settings: RouteSettings(
+                                              arguments: _listProductFeatured[
+                                                  index])));
+                                },
                                 child: Column(
                                   children: [
                                     ClipRRect(
@@ -360,7 +373,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   right: SizeConfig.safeBlockHorizontal * 3.5),
                               width: SizeConfig.safeBlockHorizontal * 35,
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ProductDetails(),
+                                          settings: RouteSettings(
+                                              arguments: _listProductBestSell[
+                                                  index])));
+                                },
                                 child: Column(
                                   children: [
                                     ClipRRect(
