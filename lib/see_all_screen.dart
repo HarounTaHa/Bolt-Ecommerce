@@ -1,3 +1,4 @@
+import 'package:boltecommerceapp/product_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -99,7 +100,13 @@ class DesignProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProductDetails(),
+                  settings: RouteSettings(arguments: _list[index])));
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -125,7 +132,7 @@ class DesignProduct extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      '${_list[index].price}',
+                      '\$ ${_list[index].price}',
                     ),
                   ),
                   SizedBox(

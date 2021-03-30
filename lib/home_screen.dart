@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'Utility/config.dart';
 import 'Widget/menu.dart';
+import 'cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List _list = categories;
   List _listProductFeatured = productFeatured;
   List _listProductBestSell = productBestSell;
+  List _listCart = cartProduct;
   List _category = [
     categories[0].name,
     categories[1].name,
@@ -48,16 +50,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         MenuDesign(),
                         Spacer(),
-                        Icon(
-                          Icons.shopping_cart_outlined,
-                          size: 35,
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Cart(),
+                                    settings:
+                                        RouteSettings(arguments: _listCart)));
+                          },
+                          icon: Icon(Icons.shopping_cart_outlined),
+                          iconSize: 35,
                         ),
                         SizedBox(
-                          width: 20,
+                          width: SizeConfig.safeBlockHorizontal * 1,
                         ),
-                        Icon(
-                          Icons.favorite_border,
-                          size: 35,
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.favorite_border),
+                          iconSize: 35,
                         ),
                       ],
                     ),
@@ -293,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                              '${_listProductFeatured[index].price}',
+                                              '\$ ${_listProductFeatured[index].price}',
                                             ),
                                           ),
                                           SizedBox(
@@ -406,7 +417,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                              '${_listProductBestSell[index].price}',
+                                              '\$ ${_listProductBestSell[index].price}',
                                             ),
                                           ),
                                           SizedBox(

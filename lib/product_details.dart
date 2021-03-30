@@ -286,16 +286,31 @@ class _ProductDetailsState extends State<ProductDetails> {
               child: RaisedButton(
                 textColor: Colors.white,
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                onPressed: () {},
+                onPressed: () {
+                  if (cartProduct.where((e) => e.id == product.id).isEmpty) {
+                    cartProduct.add(product);
+                    setState(() {});
+                  } else {}
+                },
                 elevation: 2,
-                color: Colors.blue[400],
-                child: Text(
-                  'ADD TO CART',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      wordSpacing: 1),
-                ),
+                color: cartProduct.where((e) => e.id == product.id).isEmpty
+                    ? Colors.blue[400]
+                    : Colors.green[500],
+                child: cartProduct.where((e) => e.id == product.id).isEmpty
+                    ? Text(
+                        'ADD TO CART',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            wordSpacing: 1),
+                      )
+                    : Text(
+                        'Added',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            wordSpacing: 1),
+                      ),
               ),
             ),
           ],
