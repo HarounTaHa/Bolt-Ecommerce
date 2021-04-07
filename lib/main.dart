@@ -1,7 +1,14 @@
 import 'package:boltecommerceapp/home_screen.dart';
+import 'package:boltecommerceapp/welcome_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+bool isLogin;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseAuth.instance.currentUser != null ? isLogin = true : isLogin = false;
   runApp(MyApp());
 }
 
@@ -12,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Bolt',
-      home: HomeScreen(),
+      home: isLogin == false ? WelcomeScreen() : HomeScreen(),
     );
   }
 }

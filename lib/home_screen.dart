@@ -4,6 +4,8 @@ import 'package:boltecommerceapp/Model/category.dart';
 import 'package:boltecommerceapp/Model/product.dart';
 import 'package:boltecommerceapp/product_details.dart';
 import 'package:boltecommerceapp/see_all_screen.dart';
+import 'package:boltecommerceapp/welcome_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'Utility/config.dart';
@@ -26,6 +28,16 @@ class _HomeScreenState extends State<HomeScreen> {
     categories[1].name,
     categories[2].name,
   ];
+  getUser() {
+    var user = FirebaseAuth.instance.currentUser;
+    print(user.email);
+  }
+
+  @override
+  void initState() {
+    getUser();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +80,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.favorite_border),
+                          iconSize: 35,
+                        ),
+                        IconButton(
+                          onPressed: () async {
+                            await FirebaseAuth.instance.signOut();
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => WelcomeScreen()));
+                          },
+                          icon: Icon(Icons.exit_to_app),
                           iconSize: 35,
                         ),
                       ],
