@@ -17,7 +17,12 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+  final double maxSlide = 255.0;
+  double slide = 0;
+  double scale = 0;
   int selected = 0;
   List _list = categories;
   List _listProductFeatured = productFeatured;
